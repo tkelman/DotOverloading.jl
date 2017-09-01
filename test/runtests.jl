@@ -13,7 +13,17 @@ Documenter.makedocs(
     authors = "Brandon Taylor"
 )
 
-using Base.Test
+struct A
+    b::String
+    c::Int
+end
 
-# write your own tests here
-@test 1 == 2
+struct D
+    a::A
+    d::Int
+end
+
+d = D(A("b", 1), 2)
+test(d) = @overload_dots d.a.c
+# inspect for type stability
+@code_warntype test(d)
