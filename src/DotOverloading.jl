@@ -57,7 +57,9 @@ julia> DotOverloading.get_field(v::ValuedTuple, value) = getindex(v, value);
 
 julia> v = @VT a = 1 b = 2.5;
 
-julia> @overload_dots v.a + v.b
+julia> test(v) = @overload_dots v.a + v.b;
+
+julia> Test.@inferred test(v)
 3.5
 ```
 """

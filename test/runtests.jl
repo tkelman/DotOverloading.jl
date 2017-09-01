@@ -26,4 +26,4 @@ end
 d = D(A("b", 1), 2)
 test(d) = @overload_dots d.a.c = 3
 # inspect for type stability
-@code_warntype test(d)
+Test.@inferred test(d)
