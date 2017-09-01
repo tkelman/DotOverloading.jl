@@ -12,18 +12,3 @@ Documenter.makedocs(
     checkdocs = :exports,
     authors = "Brandon Taylor"
 )
-
-mutable struct A
-    b::String
-    c::Int
-end
-
-mutable struct D
-    a::A
-    d::Int
-end
-
-d = D(A("b", 1), 2)
-test(d) = @overload_dots d.a.c = 3
-# inspect for type stability
-Test.@inferred test(d)
