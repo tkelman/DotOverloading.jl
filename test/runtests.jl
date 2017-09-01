@@ -13,17 +13,17 @@ Documenter.makedocs(
     authors = "Brandon Taylor"
 )
 
-struct A
+mutable struct A
     b::String
     c::Int
 end
 
-struct D
+mutable struct D
     a::A
     d::Int
 end
 
 d = D(A("b", 1), 2)
-test(d) = @overload_dots d.a.c
+test(d) = @overload_dots d.a.c = 3
 # inspect for type stability
 @code_warntype test(d)
